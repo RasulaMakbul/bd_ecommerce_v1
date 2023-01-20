@@ -30,16 +30,15 @@
                     <div class="exzoom" id="exzoom">
                         <div class="exzoom_img_box">
                             <ul class='exzoom_img_ul'>
-                                @foreach($colorP->images as $image)
+                                @foreach($makeupColorp->images as $image)
                                 <li>
-                                    <img src="{{ asset('/storage/' . $image) }}" alt="multiple image" class=" border border-blue-600">
-
+                                    <img src="{{ asset('/storage/' . $image) }}" alt="multiple image" class=" border border-blue-600>
+                                    <!-- class=" w-20 h-20 border border-blue-600" -->
                                 </li>
                                 @endforeach
                             </ul>
                         </div>
-                        <div class=" exzoom_nav">
-                        </div>
+                        <div class="exzoom_nav"></div>
                         <p class="exzoom_btn">
                             <a href="javascript:void(0);" class="exzoom_prev_btn">
                                 < </a>
@@ -52,7 +51,7 @@
 
             </div>
             <div class="col">
-                <h2>{{$colorP->title}}</h2>
+                <h2>{{$makeupColorp->title}}</h2>
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
@@ -62,7 +61,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$colorP->code}}</p>
+                            <p>{{$makeupColorp->code}}</p>
                         </div>
                     </div>
 
@@ -75,8 +74,8 @@
                         </div>
                         <div class="col-8">
                             <p>
-                                @if(isset($colorP->makeup_product_id))
-                                {{$colorP->makeupProducts?->title}}
+                                @if(isset($makeupColorp->makeup_product_id))
+                                {{$makeupColorp->makeupProducts?->title}}
 
                                 @endif
                             </p>
@@ -91,7 +90,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$colorP->costing}}</p>
+                            <p>{{$makeupColorp->costing}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -102,7 +101,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$colorP->unitPrice}}</p>
+                            <p>{{$makeupColorp->unitPrice}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -113,7 +112,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$colorP->stock}}</p>
+                            <p>{{$makeupColorp->stock}}</p>
                         </div>
                     </div>
 

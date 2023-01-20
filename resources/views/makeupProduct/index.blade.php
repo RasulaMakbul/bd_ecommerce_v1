@@ -53,7 +53,7 @@
                     @endif
                 </td>
                 <td>
-                    @if(isset($product->makeupSubCategory_id))
+                    @if(isset($product->makeup_sub_category_id))
                     {{$product->makeupSubCategory?->title}}
                     @else
                     <span class="bg-danger">{{__('Product Under Category')}}</span>

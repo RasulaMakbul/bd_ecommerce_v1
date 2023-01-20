@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MakeupColorpRequest;
 use App\Models\MakeupColorp;
 use App\Models\makeupProduct;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class MakeupColorpController extends Controller
@@ -16,7 +17,8 @@ class MakeupColorpController extends Controller
      */
     public function index()
     {
-        return view('makeupColorP.index');
+        $makeupColorP = MakeupColorp::latest()->paginate(15);
+        return view('makeupColorP.index', compact('makeupColorP'));
     }
 
     /**
@@ -61,7 +63,8 @@ class MakeupColorpController extends Controller
         $requestData['images'] = $images;
 
         MakeupColorp::create($requestData);
-        return redirect()->back()->withMessage('Successfully Created!');
+        return back()->withMessage('Successfully Created!');
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
@@ -78,8 +81,8 @@ class MakeupColorpController extends Controller
     public function viewColor($id)
     {
         // dd($id);
-        $colorP = MakeupColorp::find($id);
-        return view('makeupColorP.show', compact('colorP'));
+        $makeupColorp = MakeupColorp::find($id);
+        return view('makeupColorP.show', compact('makeupColorp'));
     }
 
     /**

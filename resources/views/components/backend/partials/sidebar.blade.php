@@ -22,6 +22,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('makeupColor.index')}}">
+                    <i class="fa-solid fa-fill-drip"></i></i> {{__('Makeup Proucts color')}}
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="bar-chart-2"></span>
                     Reports

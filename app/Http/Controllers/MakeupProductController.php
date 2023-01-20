@@ -58,7 +58,7 @@ class MakeupProductController extends Controller
             'pao' => $request->pao,
             'origin' => $request->origin,
             'makeup_id' => $request->makeup_id,
-            'makeupSubCategory_id' => $request->makeupSubCategory_id,
+            'makeup_sub_category_id' => $request->makeup_sub_category_id,
             'is_active' => $request->is_active ? true : false,
         ];
 
@@ -74,7 +74,7 @@ class MakeupProductController extends Controller
         $requestData['images'] = $images;
 
         makeupProduct::create($requestData);
-        return redirect()->route('makeupProduct.index')->withMessage('Successfully Created!');
+        return redirect()->back()->withMessage('Successfully Created!');
     }
 
     /**
@@ -125,7 +125,7 @@ class MakeupProductController extends Controller
             'pao' => $request->pao,
             'origin' => $request->origin,
             'makeup_id' => $request->makeup_id,
-            'makeupSubCategory_id' => $request->makeupSubCategory_id,
+            'makeup_sub_category_id' => $request->makeup_sub_category_id,
             'is_active' => $request->is_active ? true : false,
         ];
 

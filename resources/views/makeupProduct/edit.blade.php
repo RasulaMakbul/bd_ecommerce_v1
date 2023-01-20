@@ -30,7 +30,7 @@
 
                 </div>
                 <div class="mb-3">
-                    <select name="makeupSubCategory_id" class="block w-full mt-1 rounded-md">
+                    <select name="makeup_sub_category_id" class="block w-full mt-1 rounded-md">
                         <option value="">{{__('Select Makeup Subcategory')}}</option>
                         @foreach ($makeupSubCategories as $makeupSubCategory)
 

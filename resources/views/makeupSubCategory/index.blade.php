@@ -43,7 +43,7 @@
 
             <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td class="tableImage"><img src="{{asset('storage/makeupSubCategory/'.$makeupSubCategory->image)}}" alt=""></td>
+                <td class="tableImage"><img src="{{asset('storage/makeupSubCategory/'.$makeupSubCategory->images)}}" alt=""></td>
                 <td>{{ $makeupSubCategory->title }}</td>
                 <td>
                     {{ $makeupSubCategory->makeup->title }}

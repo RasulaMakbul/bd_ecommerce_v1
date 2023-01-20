@@ -19,9 +19,49 @@
             <a class="btn btn-sm btn-outline-secondary" aria-current="page" href="{{route('makeupProduct.edit',$makeupProduct->id)}}">
                 <i class="fa-solid fa-plus"></i> {{__('Edit Product')}}
             </a>
-            <a class="btn btn-sm btn-outline-secondary" aria-current="page" href="{{route('makeupColor.create')}}">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#productCreateModal">
                 <i class="fa-solid fa-plus"></i> {{__('Create Color')}}
-            </a>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="productCreateModal" tabindex="-1" aria-labelledby="productCreateModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="productCreateModalLabel">{{__('Create Product')}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{route('makeupColor.store')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <x-backend.forms.singleInput name="title" class="mt-2" title="{{__('Color Name')}}" type="text" id="title" :value="old('title')" />
+                                <x-backend.forms.singleInput name="code" class="mt-2" title="{{__('Color Code')}}" type="text" id="code" :value="old('code')" />
+
+                                <div class="mb-3">
+                                    <select name="makeup_product_id" class="block w-full mt-1 rounded-md">
+
+                                        <option value="{{$makeupProduct->id}}">{{$makeupProduct->title}}</option>
+                                    </select>
+
+                                </div>
+                                <x-backend.forms.singleInput name="costing" class="mt-2" title="{{__('Costing')}}" type="number" id="costing" :value="old('costing')" />
+
+                                <x-backend.forms.singleInput name="unitPrice" class="mt-2" title="{{__('Unit Price')}}" type="number" id="unitPrice" :value="old('unitPrice')" />
+                                <x-backend.forms.singleInput name="stock" class="mt-2" title="{{__('Stock')}}" type="number" id="stock" :value="old('stock')" />
+
+                                <div class="form-group mb-3">
+                                    <label for="image" class="form-label">{{__('Image') }}</label>
+                                    <input type="file" name="images[]" class="form-control" id="image" multiple>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -95,7 +135,7 @@
                         </div>
                         <div class="col-8">
                             <p>
-                                @if(isset($makeupProduct->makeupSubCategory_id))
+                                @if(isset($makeupProduct->makeup_sub_category_id))
                                 {{$makeupProduct->makeupSubCategory?->title}}
                                 @else
                                 <span class="bg-danger">{{__('Product Under Category')}}</span>

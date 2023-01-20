@@ -29,53 +29,33 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">{{__('Title')}}</th>
+                <th scope="col">{{__('Code')}}</th>
                 <th scope="col">{{__('Product Name')}}</th>
-                <th scope="col">{{__('Category Name')}}</th>
-                <th scope="col">{{__('Subcategory Name')}}</th>
-                <th scope="col-4" class="col-2 text-truncate">{{__('Short Defination')}}</th>
-                <th scope="col">{{__('Weight')}}</th>
-                <th scope="col">{{__('Origin')}}</th>
-                <th scope="col">{{__('Status')}}</th>
+                <th scope="col">{{__('Costing')}}</th>
+                <th scope="col">{{__('Unit Price')}}</th>
+                <th scope="col">{{__('Stock')}}</th>
                 <th scope="col">{{__('Action')}}</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($products as $product)
+            @foreach($makeupColorP as $color)
 
             <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $product->title }}</td>
-                <td>
-                    @if(isset($product->makeup_id))
-                    {{$product->makeup?->title}}
-                    @else
-                    <span class="bg-danger">{{__('Product Under Subcategory')}}</span>
-                    @endif
-                </td>
-                <td>
-                    @if(isset($product->makeupSubCategory_id))
-                    {{$product->makeupSubCategory?->title}}
-                    @else
-                    <span class="bg-danger">{{__('Product Under Category')}}</span>
-                    @endif
-                </td>
-
-
-                <td>{{ $product->shortDefination }}</td>
-                <td>{{ $product->weight }}</td>
-                <td>{{ $product->origin }}</td>
-                <td>@if($product->is_active==1)
-
-                    <a href="{{route('makeupProduct.inactive',$product->id)}}" class="btn btn-sm link-danger">Active</a>
-                    @else
-
-                    <a href="{{route('makeupProduct.active',$product->id)}}" class="btn btn-sm link-success">Inactive</a>
-                    @endif
-                </td>
+                <td>{{ $color->title }}</td>
+                <td>{{ $color->code }}</td>
 
                 <td>
-                    <a href="{{route('makeupProduct.show',$product->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
-                    <a href="{{route('makeupProduct.edit',$product->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
+                    {{$color->makeupProducts?->title}}
+                </td>
+                <td>{{ $color->costing }}</td>
+                <td>{{ $color->unitProce }}</td>
+                <td>{{ $color->stock }}</td>
+
+                <td>
+                    <a href="{{route('makeupColor.show',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
+                    <a href="{{route('makeupColor.edit',$color->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn link-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="fa-solid fa-trash fs-5"></i>
@@ -93,7 +73,7 @@
                                     Are you sure you want to delete?
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('makeupProduct.destroy', $product->id) }}" method="post" style="display:inline">
+                                    <form action="{{ route('makeupColor.destroy', $color->id) }}" method="post" style="display:inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-danger">Confirm</i></button>

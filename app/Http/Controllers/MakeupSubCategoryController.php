@@ -48,12 +48,12 @@ class MakeupSubCategoryController extends Controller
             'makeup_id' => $makeupSubCategoriesRequest->makeup_id,
             'description' => $makeupSubCategoriesRequest->description,
             'is_active' => $makeupSubCategoriesRequest->is_active ? true : false,
-            'image' => $fileName
+            'images' => $fileName
         ]);
         MakeupSubCategory::create($requestData);
 
 
-        return redirect()->route('makeupSubCategory.index')->withMessage('Successfully Created');
+        return redirect()->back()->withMessage('Successfully Created');
     }
 
     /**
@@ -64,6 +64,7 @@ class MakeupSubCategoryController extends Controller
      */
     public function show(MakeupSubCategory $makeupSubCategory)
     {
+        // dd($makeupSubCategory->makeupProduct);
         return view('makeupSubCategory.show', compact('makeupSubCategory'));
     }
 

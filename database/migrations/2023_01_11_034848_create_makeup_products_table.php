@@ -32,12 +32,12 @@ return new class extends Migration
 
 
             $table->unsignedBigInteger('makeup_id')->nullable();
-            $table->unsignedBigInteger('makeupSubCategory_id')->nullable();
+            $table->unsignedBigInteger('makeup_sub_category_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('makeup_id')->references('id')->on('makeups')->onDelete('cascade');
-            $table->foreign('makeupSubCategory_id')->references('id')->on('makeup_sub_categories')->onDelete('cascade');
+            $table->foreign('makeup_sub_category_id')->references('id')->on('makeup_sub_categories')->onDelete('cascade');
         });
     }
 

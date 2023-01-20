@@ -18,7 +18,7 @@ class makeupProduct extends Model
 
     public function makeupSubCategory()
     {
-        return $this->belongsTo(MakeupSubCategory::class, 'makeupSubCategory_id')->withTrashed();
+        return $this->belongsTo(MakeupSubCategory::class, 'makeup_sub_category_id')->withTrashed();
     }
 
     public function makeupColorP()
