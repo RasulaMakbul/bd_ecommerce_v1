@@ -1,20 +1,30 @@
 <x-backend.master>
     <x-slot:title>
-        {{__('Makeup Products Trashed')}}
+        {{__('Makeup Products')}}
     </x-slot:title>
 
     <x-backend.forms.message />
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">{{__('Makeup Products Trashed')}}</h1>
+        <h1 class="h2">{{__('Makeup Products')}}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a class="btn btn-sm btn-outline-secondary" aria-current="page" href="{{route('makeupProduct.index')}}">
-                <i class="fa-solid fa-book"></i> {{__('Makeup Products')}}
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                <a href="{{ route('makeupProduct.trash') }}">
+                    <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i> Trash</button>
+                </a>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+            </button>
+            <a class="btn btn-sm btn-outline-secondary" aria-current="page" href="{{route('makeupProduct.create')}}">
+                <i class="fa-solid fa-plus"></i> {{__('Create')}}
             </a>
         </div>
     </div>
 
-    <h2>{{__('Trashed')}}</h2>
     <table class="table table-bordered table-hover align-middle">
         <thead>
             <tr>
@@ -30,7 +40,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($makeupProduct as $product)
+            @foreach($products as $product)
 
             <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
@@ -62,8 +72,10 @@
                     <a href="{{route('makeupProduct.active',$product->id)}}" class="btn btn-sm link-success">Inactive</a>
                     @endif
                 </td>
+
                 <td>
-                    <a href="{{route('makeupProduct.restore',$product->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                    <a href="{{route('makeupProduct.show',$product->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
+                    <a href="{{route('makeupProduct.edit',$product->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn link-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="fa-solid fa-trash fs-5"></i>
@@ -81,7 +93,7 @@
                                     Are you sure you want to delete?
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('makeupProduct.delete', $product->id) }}" method="post" style="display:inline">
+                                    <form action="{{ route('makeupProduct.destroy', $product->id) }}" method="post" style="display:inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-danger">Confirm</i></button>
@@ -94,8 +106,6 @@
 
 
                 </td>
-
-
             </tr>
             @endforeach
         </tbody>

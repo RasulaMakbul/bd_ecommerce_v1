@@ -14,8 +14,9 @@
 
 
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('assets')}}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{asset('assets')}}/css/backend/style.css" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/backend/style.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/exzoom/jquery.exzoom.css')}}" rel="stylesheet">
 
 
 </head>
@@ -30,14 +31,19 @@
             <x-backend.partials.sidebar />
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <a href="{{ url()->previous() }}" class="btn btn-secondary" title="Go back to previous page"><i class=" fa-solid fa-rotate-left fs-5"></i></a>
                 {{$slot}}
             </main>
         </div>
     </div>
 
 
-    <script src="{{asset('assets')}}/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('assets')}}/js/backend/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/exzoom/jquery.exzoom.js')}}"></script>
+    <script src="{{asset('assets/js/backend/scripts.js')}}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

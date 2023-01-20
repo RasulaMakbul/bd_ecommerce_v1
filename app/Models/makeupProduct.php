@@ -13,12 +13,17 @@ class makeupProduct extends Model
 
     public function makeup()
     {
-        return $this->belongsTo(Makeup::class)->withTrashed();
+        return $this->belongsTo(Makeup::class, 'makeup_id')->withTrashed();
     }
 
     public function makeupSubCategory()
     {
-        return $this->belongsTo(MakeupSubCategory::class)->withTrashed();
+        return $this->belongsTo(MakeupSubCategory::class, 'makeupSubCategory_id')->withTrashed();
+    }
+
+    public function makeupColorP()
+    {
+        return $this->hasMany(MakeupColorp::class)->withTrashed();
     }
 
     protected $casts = [

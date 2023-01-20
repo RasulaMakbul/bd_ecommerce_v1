@@ -6,6 +6,7 @@ use App\Models\makeupProduct;
 use App\Http\Requests\StoremakeupProductRequest;
 use App\Http\Requests\UpdatemakeupProductRequest;
 use App\Models\Makeup;
+use App\Models\MakeupColorp;
 use App\Models\MakeupSubCategory;
 use Illuminate\Database\QueryException;
 
@@ -18,7 +19,7 @@ class MakeupProductController extends Controller
      */
     public function index()
     {
-        $products = makeupProduct::all();
+        $products = makeupProduct::latest()->paginate(15);
         return view('makeupProduct.index', compact('products'));
     }
 
@@ -30,7 +31,7 @@ class MakeupProductController extends Controller
     public function create()
     {
         $makeups = Makeup::all();
-        $makeupSubCategories = MakeupSubCategory::latest()->paginate(15);
+        $makeupSubCategories = MakeupSubCategory::all();
         return view('makeupProduct.create', compact('makeups', 'makeupSubCategories'));
     }
 
@@ -73,7 +74,7 @@ class MakeupProductController extends Controller
         $requestData['images'] = $images;
 
         makeupProduct::create($requestData);
-        return redirect()->route('makeupProduct.index');
+        return redirect()->route('makeupProduct.index')->withMessage('Successfully Created!');
     }
 
     /**
@@ -84,7 +85,7 @@ class MakeupProductController extends Controller
      */
     public function show(makeupProduct $makeupProduct)
     {
-        return view('makeupProduct.show');
+        return view('makeupProduct.show', compact('makeupProduct'));
     }
 
     /**
@@ -154,11 +155,12 @@ class MakeupProductController extends Controller
      */
     public function destroy(makeupProduct $makeupProduct)
     {
-        //
+        $makeupProduct->delete();
+        return back();
     }
     public function trash()
     {
-        $makeupSubCategories = makeupProduct::onlyTrashed()->get();
+        $makeupProduct = makeupProduct::onlyTrashed()->get();
         return view('makeupProduct.trash', compact('makeupProduct'));
     }
 

@@ -1,8 +1,4 @@
-/* globals Chart:false, feather:false */
 
-(function () {
-    'use strict'
-})()
 
 function shortingText(value) {
     if (value.length <= 30) {
@@ -12,3 +8,9 @@ function shortingText(value) {
     return value.substring(0, 30) + '...';
 
 }
+
+$(function () {
+
+
+
+});

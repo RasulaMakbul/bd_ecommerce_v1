@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MakeupColorpController;
 use App\Http\Controllers\MakeupController;
 use App\Http\Controllers\MakeupProductController;
 use App\Http\Controllers\MakeupSubCategoryController;
@@ -60,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('makeupSubCategory', MakeupSubCategoryController::class);
 });
 
-// Makeup Sub Products
+// Makeup Products
 
 Route::middleware('auth')->group(function () {
     Route::get('/makeupProduct-trash', [MakeupProductController::class, 'trash'])->name('makeupProduct.trash');
@@ -70,6 +71,19 @@ Route::middleware('auth')->group(function () {
     Route::get('makeupProduct/active/{id}', [MakeupProductController::class, 'active'])->name('makeupProduct.active');
     Route::get('makeupProduct/inactive/{id}', [MakeupProductController::class, 'inactive'])->name('makeupProduct.inactive');
     Route::resource('makeupProduct', MakeupProductController::class);
+});
+
+
+// Makeup Products
+
+Route::middleware('auth')->group(function () {
+    Route::get('/makeupColor-trash', [MakeupColorpController::class, 'trash'])->name('makeupColor.trash');
+    Route::get('/makeupColor/{id}/restore', [MakeupColorpController::class, 'restore'])->name('makeupColor.restore');
+    Route::delete('/makeupColor/{id}/delete', [MakeupColorpController::class, 'delete'])->name('makeupColor.delete');
+
+    Route::get('makeupColor/active/{id}', [MakeupColorpController::class, 'active'])->name('makeupColor.active');
+    Route::get('makeupColor/inactive/{id}', [MakeupColorpController::class, 'inactive'])->name('makeupColor.inactive');
+    Route::resource('makeupColor', MakeupColorpController::class);
 });
 
 require __DIR__ . '/auth.php';

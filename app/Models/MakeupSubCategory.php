@@ -17,6 +17,6 @@ class MakeupSubCategory extends Model
     }
     public function makeupProduct()
     {
-        return $this->hasMany(makeupProduct::class);
+        return $this->hasMany(makeupProduct::class)->withTrashed();
     }
 }

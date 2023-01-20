@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('costing');
             $table->integer('unitPrice');
             $table->integer('stock');
-            $table->text('image')->nullable();
+            $table->text('images')->nullable();
 
             $table->unsignedBigInteger('makeup_product_id')->nullable();
 

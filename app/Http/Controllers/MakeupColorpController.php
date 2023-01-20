@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MakeupColorpRequest;
 use App\Models\MakeupColorp;
+use App\Models\makeupProduct;
 use Illuminate\Http\Request;
 
 class MakeupColorpController extends Controller
@@ -14,7 +16,7 @@ class MakeupColorpController extends Controller
      */
     public function index()
     {
-        //
+        return view('makeupColorP.index');
     }
 
     /**
@@ -24,7 +26,8 @@ class MakeupColorpController extends Controller
      */
     public function create()
     {
-        //
+        $makeupProduct = makeupProduct::all();
+        return view('makeupColorP.create', compact('makeupProduct'));
     }
 
     /**
@@ -33,9 +36,32 @@ class MakeupColorpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MakeupColorpRequest $request)
     {
-        //
+        //dd($request);
+        $requestData = [
+            'title' => $request->title,
+            'code' => $request->code,
+            'costing' => $request->costing,
+            'unitPrice' => $request->unitPrice,
+            'stock' => $request->stock,
+            'makeup_product_id' => $request->makeup_product_id,
+
+        ];
+
+        $images = [];
+        foreach ($request['images'] as $image) {
+            $originalName = $image->getClientOriginalName();
+            $fileName = date('Y-m-d') . time() . $originalName;
+            $image_path =  $image->storeAs('image', $fileName, 'public');
+
+            array_push($images, $image_path);
+        }
+
+        $requestData['images'] = $images;
+
+        MakeupColorp::create($requestData);
+        return redirect()->back()->withMessage('Successfully Created!');
     }
 
     /**
@@ -46,7 +72,8 @@ class MakeupColorpController extends Controller
      */
     public function show(MakeupColorp $makeupColorp)
     {
-        //
+        dd($makeupColorp->id);
+        return view('makeupColorP.show', compact('makeupColorp'));
     }
 
     /**
@@ -57,7 +84,8 @@ class MakeupColorpController extends Controller
      */
     public function edit(MakeupColorp $makeupColorp)
     {
-        //
+        dd($makeupColorp->id);
+        return view('makeupColorP.edit', compact('makeupColorp'));
     }
 
     /**
