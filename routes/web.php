@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('makeupColor/active/{id}', [MakeupColorpController::class, 'active'])->name('makeupColor.active');
     Route::get('makeupColor/inactive/{id}', [MakeupColorpController::class, 'inactive'])->name('makeupColor.inactive');
+    Route::get('makeupColor/show/{id}', [MakeupColorpController::class, 'viewColor'])->name('makeupColor.viewColor');
     Route::resource('makeupColor', MakeupColorpController::class);
 });
 

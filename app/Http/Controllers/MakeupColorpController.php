@@ -72,8 +72,14 @@ class MakeupColorpController extends Controller
      */
     public function show(MakeupColorp $makeupColorp)
     {
-        dd($makeupColorp->id);
+        dd($makeupColorp);
         return view('makeupColorP.show', compact('makeupColorp'));
+    }
+    public function viewColor($id)
+    {
+        // dd($id);
+        $colorP = MakeupColorp::find($id);
+        return view('makeupColorP.show', compact('colorP'));
     }
 
     /**
@@ -84,7 +90,7 @@ class MakeupColorpController extends Controller
      */
     public function edit(MakeupColorp $makeupColorp)
     {
-        dd($makeupColorp->id);
+        dd($makeupColorp);
         return view('makeupColorP.edit', compact('makeupColorp'));
     }
 

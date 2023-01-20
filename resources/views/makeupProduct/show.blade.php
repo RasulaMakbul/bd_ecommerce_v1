@@ -270,7 +270,7 @@
                 <td>{{$color->unitPrice}}</td>
                 <td>{{$color->stock}}</td>
                 <td>
-                    <a href="{{route('makeupColor.show',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
+                    <a href="{{route('makeupColor.viewColor',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
                     <a href="{{route('makeupColor.edit',$color->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn link-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">

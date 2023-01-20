@@ -30,7 +30,7 @@
                     <div class="exzoom" id="exzoom">
                         <div class="exzoom_img_box">
                             <ul class='exzoom_img_ul'>
-                                @foreach($makeupColorp->images as $image)
+                                @foreach($colorP->images as $image)
                                 <li>
                                     <img src="{{ asset('/storage/' . $image) }}" alt="multiple image" class=" border border-blue-600">
 
@@ -52,7 +52,7 @@
 
             </div>
             <div class="col">
-                <h2>{{$makeupColorp->title}}</h2>
+                <h2>{{$colorP->title}}</h2>
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
@@ -62,7 +62,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$makeupColorp->code}}</p>
+                            <p>{{$colorP->code}}</p>
                         </div>
                     </div>
 
@@ -75,8 +75,8 @@
                         </div>
                         <div class="col-8">
                             <p>
-                                @if(isset($makeupColorp->makeup_product_id))
-                                {{$makeupColorp->makeupProducts?->title}}
+                                @if(isset($colorP->makeup_product_id))
+                                {{$colorP->makeupProducts?->title}}
 
                                 @endif
                             </p>
@@ -91,7 +91,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$makeupColorp->costing}}</p>
+                            <p>{{$colorP->costing}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -102,7 +102,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$makeupColorp->unitPrice}}</p>
+                            <p>{{$colorP->unitPrice}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -113,7 +113,7 @@
                             <h5>{{__(':')}}</h5>
                         </div>
                         <div class="col-8">
-                            <p>{{$makeupColorp->stock}}</p>
+                            <p>{{$colorP->stock}}</p>
                         </div>
                     </div>
 

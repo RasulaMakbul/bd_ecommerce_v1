@@ -85,6 +85,7 @@ class MakeupProductController extends Controller
      */
     public function show(makeupProduct $makeupProduct)
     {
+        // dd($makeupProduct);
         return view('makeupProduct.show', compact('makeupProduct'));
     }
 
