@@ -20,7 +20,7 @@ class MakeupProductController extends Controller
     public function index()
     {
         $products = makeupProduct::latest()->paginate(15);
-        return view('makeupProduct.index', compact('products'));
+        return view('backend.makeupProduct.index', compact('products'));
     }
 
     /**
@@ -32,7 +32,7 @@ class MakeupProductController extends Controller
     {
         $makeups = Makeup::all();
         $makeupSubCategories = MakeupSubCategory::all();
-        return view('makeupProduct.create', compact('makeups', 'makeupSubCategories'));
+        return view('backend.makeupProduct.create', compact('makeups', 'makeupSubCategories'));
     }
 
     /**
@@ -86,7 +86,7 @@ class MakeupProductController extends Controller
     public function show(makeupProduct $makeupProduct)
     {
         // dd($makeupProduct);
-        return view('makeupProduct.show', compact('makeupProduct'));
+        return view('backend.makeupProduct.show', compact('makeupProduct'));
     }
 
     /**
@@ -99,7 +99,7 @@ class MakeupProductController extends Controller
     {
         $makeups = Makeup::all();
         $makeupSubCategories = MakeupSubCategory::all();
-        return view('makeupProduct.edit', compact('makeups', 'makeupSubCategories', 'makeupProduct'));
+        return view('backend.makeupProduct.edit', compact('makeups', 'makeupSubCategories', 'makeupProduct'));
     }
 
     /**
@@ -162,7 +162,7 @@ class MakeupProductController extends Controller
     public function trash()
     {
         $makeupProduct = makeupProduct::onlyTrashed()->get();
-        return view('makeupProduct.trash', compact('makeupProduct'));
+        return view('backend.makeupProduct.trash', compact('makeupProduct'));
     }
 
     public function restore($id)

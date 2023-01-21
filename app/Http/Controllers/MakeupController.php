@@ -17,7 +17,7 @@ class MakeupController extends Controller
     public function index()
     {
         $makeups = Makeup::all();
-        return view('makeups.index', compact('makeups'));
+        return view('backend.makeups.index', compact('makeups'));
     }
 
     /**
@@ -28,7 +28,7 @@ class MakeupController extends Controller
     public function create()
     {
 
-        return view('makeups.create');
+        return view('backend.makeups.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class MakeupController extends Controller
      */
     public function show(Makeup $makeup)
     {
-        return view('makeups.show', compact('makeup'));
+        return view('backend.makeups.show', compact('makeup'));
     }
 
     /**
@@ -68,7 +68,7 @@ class MakeupController extends Controller
      */
     public function edit(Makeup $makeup)
     {
-        return view('makeups.edit', compact('makeup'));
+        return view('backend.makeups.edit', compact('makeup'));
     }
 
     /**
@@ -105,7 +105,7 @@ class MakeupController extends Controller
     public function trash()
     {
         $makeups = Makeup::onlyTrashed()->get();
-        return view('makeups.trash', compact('makeups'));
+        return view('backend.makeups.trash', compact('makeups'));
     }
 
     public function restore($id)

@@ -18,7 +18,7 @@ class MakeupSubCategoryController extends Controller
     public function index()
     {
         $makeupSubCategories = MakeupSubCategory::latest()->paginate(15);
-        return view('makeupSubCategory.index', compact('makeupSubCategories'));
+        return view('backend.makeupSubCategory.index', compact('makeupSubCategories'));
     }
 
     /**
@@ -29,7 +29,7 @@ class MakeupSubCategoryController extends Controller
     public function create()
     {
         $makeups = Makeup::all();
-        return view('makeupSubCategory.create', compact('makeups'));
+        return view('backend.makeupSubCategory.create', compact('makeups'));
     }
 
     /**
@@ -65,7 +65,7 @@ class MakeupSubCategoryController extends Controller
     public function show(MakeupSubCategory $makeupSubCategory)
     {
         // dd($makeupSubCategory->makeupProduct);
-        return view('makeupSubCategory.show', compact('makeupSubCategory'));
+        return view('backend.makeupSubCategory.show', compact('makeupSubCategory'));
     }
 
     /**
@@ -77,7 +77,7 @@ class MakeupSubCategoryController extends Controller
     public function edit(MakeupSubCategory $makeupSubCategory)
     {
         $makeups = Makeup::all();
-        return view('makeupSubCategory.edit', compact('makeups', 'makeupSubCategory'));
+        return view('backend.makeupSubCategory.edit', compact('makeups', 'makeupSubCategory'));
     }
 
     /**
@@ -121,7 +121,7 @@ class MakeupSubCategoryController extends Controller
     public function trash()
     {
         $makeupSubCategories = MakeupSubCategory::onlyTrashed()->get();
-        return view('makeupSubCategory.trash', compact('makeupSubCategories'));
+        return view('backend.makeupSubCategory.trash', compact('makeupSubCategories'));
     }
 
     public function restore($id)

@@ -18,7 +18,7 @@ class MakeupColorpController extends Controller
     public function index()
     {
         $makeupColorp = MakeupColorp::latest()->paginate(15);
-        return view('makeupColorP.index', compact('makeupColorp'));
+        return view('backend.makeupColorP.index', compact('makeupColorp'));
     }
 
     /**
@@ -29,7 +29,7 @@ class MakeupColorpController extends Controller
     public function create()
     {
         $makeupProductp = makeupProduct::all();
-        return view('makeupColorP.create', compact('makeupProductp'));
+        return view('backend.makeupColorP.create', compact('makeupProductp'));
     }
 
     /**
@@ -76,7 +76,7 @@ class MakeupColorpController extends Controller
     public function show(MakeupColorp $makeupColorp)
     {
         // dd($makeupColorp);
-        return view('makeupColorP.show', compact('makeupColorp'));
+        return view('backend.makeupColorP.show', compact('makeupColorp'));
     }
 
     /**
@@ -89,7 +89,7 @@ class MakeupColorpController extends Controller
     {
         // dd($makeupColorp);
         $makeupProduct = makeupProduct::all();
-        return view('makeupColorP.edit', compact('makeupColorp', 'makeupProduct'));
+        return view('backend.makeupColorP.edit', compact('makeupColorp', 'makeupProduct'));
     }
 
     /**
