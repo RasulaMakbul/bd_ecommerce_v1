@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('makeupColor.index')}}">
+                <a class="nav-link" href="{{route('makeupColorp.index')}}">
                     <i class="fa-solid fa-fill-drip"></i></i> {{__('Makeup Proucts color')}}
                 </a>
             </li>

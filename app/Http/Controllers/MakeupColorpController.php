@@ -17,8 +17,8 @@ class MakeupColorpController extends Controller
      */
     public function index()
     {
-        $makeupColorP = MakeupColorp::latest()->paginate(15);
-        return view('makeupColorP.index', compact('makeupColorP'));
+        $makeupColorp = MakeupColorp::latest()->paginate(15);
+        return view('makeupColorP.index', compact('makeupColorp'));
     }
 
     /**
@@ -28,8 +28,8 @@ class MakeupColorpController extends Controller
      */
     public function create()
     {
-        $makeupProduct = makeupProduct::all();
-        return view('makeupColorP.create', compact('makeupProduct'));
+        $makeupProductp = makeupProduct::all();
+        return view('makeupColorP.create', compact('makeupProductp'));
     }
 
     /**
@@ -75,13 +75,7 @@ class MakeupColorpController extends Controller
      */
     public function show(MakeupColorp $makeupColorp)
     {
-        dd($makeupColorp);
-        return view('makeupColorP.show', compact('makeupColorp'));
-    }
-    public function viewColor($id)
-    {
-        // dd($id);
-        $makeupColorp = MakeupColorp::find($id);
+        // dd($makeupColorp);
         return view('makeupColorP.show', compact('makeupColorp'));
     }
 
@@ -93,8 +87,9 @@ class MakeupColorpController extends Controller
      */
     public function edit(MakeupColorp $makeupColorp)
     {
-        dd($makeupColorp);
-        return view('makeupColorP.edit', compact('makeupColorp'));
+        // dd($makeupColorp);
+        $makeupProduct = makeupProduct::all();
+        return view('makeupColorP.edit', compact('makeupColorp', 'makeupProduct'));
     }
 
     /**
@@ -104,9 +99,36 @@ class MakeupColorpController extends Controller
      * @param  \App\Models\MakeupColorp  $makeupColorp
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, MakeupColorp $makeupColorp)
     {
-        //
+        // dd($makeupColorp);
+        $requestData = [
+            'title' => $request->title,
+            'code' => $request->code,
+            'costing' => $request->costing,
+            'unitPrice' => $request->unitPrice,
+            'stock' => $request->stock,
+            'makeup_product_id' => $request->makeup_product_id,
+
+        ];
+
+        if ($request->hasFile('images')) {
+
+            $images = [];
+            foreach ($request['images'] as $image) {
+                $originalName = $image->getClientOriginalName();
+                $fileName = date('Y-m-d') . time() . $originalName;
+                $image_path =  $image->storeAs('image', $fileName, 'public');
+
+                array_push($images, $image_path);
+            }
+
+            $requestData['images'] = $images;
+        }
+
+        $makeupColorp->update($requestData);
+        return redirect()->route('makeupColorp.index')->withMessage('Successfully Created!');
     }
 
     /**

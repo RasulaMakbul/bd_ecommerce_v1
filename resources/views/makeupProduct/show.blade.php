@@ -32,7 +32,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{route('makeupColor.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('makeupColorp.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <x-backend.forms.singleInput name="title" class="mt-2" title="{{__('Color Name')}}" type="text" id="title" :value="old('title')" />
                                 <x-backend.forms.singleInput name="code" class="mt-2" title="{{__('Color Code')}}" type="text" id="code" :value="old('code')" />
@@ -310,8 +310,8 @@
                 <td>{{$color->unitPrice}}</td>
                 <td>{{$color->stock}}</td>
                 <td>
-                    <a href="{{route('makeupColor.viewColor',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
-                    <a href="{{route('makeupColor.edit',$color->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
+                    <a href="{{route('makeupColorp.show',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
+                    <a href="{{route('makeupColorp.edit',$color->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn link-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="fa-solid fa-trash fs-5"></i>
@@ -329,7 +329,7 @@
                                     Are you sure you want to delete?
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('makeupColor.destroy', $color->id) }}" method="post" style="display:inline">
+                                    <form action="{{ route('makeupColorp.destroy', $color->id) }}" method="post" style="display:inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-danger">Confirm</i></button>

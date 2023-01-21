@@ -30,6 +30,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">{{__('Title')}}</th>
+                <th scope="col">{{__('id')}}</th>
                 <th scope="col">{{__('Code')}}</th>
                 <th scope="col">{{__('Product Name')}}</th>
                 <th scope="col">{{__('Costing')}}</th>
@@ -39,23 +40,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($makeupColorP as $color)
+            @foreach($makeupColorp as $color)
 
             <tr>
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td>{{ $color->title }}</td>
+                <td>{{ $color->id }}</td>
                 <td>{{ $color->code }}</td>
 
                 <td>
                     {{$color->makeupProducts?->title}}
                 </td>
                 <td>{{ $color->costing }}</td>
-                <td>{{ $color->unitProce }}</td>
+                <td>{{ $color->unitPrice }}</td>
                 <td>{{ $color->stock }}</td>
 
                 <td>
-                    <a href="{{route('makeupColor.show',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
-                    <a href="{{route('makeupColor.edit',$color->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
+                    <a href="{{route('makeupColorp.show',$color->id)}}" class="btn btn-sm link-info"><i class="fa-solid fa-eye fs-5"></i></a>
+                    <a href="{{route('makeupColorp.edit',$color->id)}}" class="btn btn-sm link-warning"><i class="fa-solid fa-pen-to-square fs-5"></i></a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn link-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                         <i class="fa-solid fa-trash fs-5"></i>
@@ -73,7 +75,7 @@
                                     Are you sure you want to delete?
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ route('makeupColor.destroy', $color->id) }}" method="post" style="display:inline">
+                                    <form action="{{ route('makeupColorp.destroy', $color->id) }}" method="post" style="display:inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-sm btn-danger">Confirm</i></button>

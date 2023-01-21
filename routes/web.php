@@ -74,17 +74,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// Makeup Products
+// Makeup color
 
 Route::middleware('auth')->group(function () {
     Route::get('/makeupColor-trash', [MakeupColorpController::class, 'trash'])->name('makeupColor.trash');
     Route::get('/makeupColor/{id}/restore', [MakeupColorpController::class, 'restore'])->name('makeupColor.restore');
     Route::delete('/makeupColor/{id}/delete', [MakeupColorpController::class, 'delete'])->name('makeupColor.delete');
-
-    Route::get('makeupColor/active/{id}', [MakeupColorpController::class, 'active'])->name('makeupColor.active');
-    Route::get('makeupColor/inactive/{id}', [MakeupColorpController::class, 'inactive'])->name('makeupColor.inactive');
-    Route::get('makeupColor/show/{id}', [MakeupColorpController::class, 'viewColor'])->name('makeupColor.viewColor');
-    Route::resource('makeupColor', MakeupColorpController::class);
+    // Route::get('makeupColor/show/{id}', [MakeupColorpController::class, 'viewColor'])->name('makeupColor.viewColor');
+    Route::resource('makeupColorp', MakeupColorpController::class);
 });
 
 require __DIR__ . '/auth.php';
